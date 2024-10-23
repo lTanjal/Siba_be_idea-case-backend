@@ -1,4 +1,16 @@
-USE casedb; /* UPDATED 2024-01-24 */
+USE casedb; /* UPDATED 2024-10-09 */
+
+
+/* --- IDEA CASE CREATE TABLES --- */
+CREATE TABLE IF NOT EXISTS Category (
+    id          INTEGER          NOT NULL AUTO_INCREMENT,
+    name        VARCHAR (255)    NOT NULL UNIQUE,
+    description VARCHAR(255),
+    budgetLimit DECIMAL(19,4),
+    isActive    BOOLEAN         NOT NULL DEFAULT FALSE,
+    
+    PRIMARY KEY (id)
+)   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /* --- 01 CREATE TABLES --- */
 

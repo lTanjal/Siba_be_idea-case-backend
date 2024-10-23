@@ -1,7 +1,8 @@
-USE casedb; /* UPDATED 2023-11-21 */
+USE casedb; /* UPDATED 2024-10-09 */
 
 -- DROP DATABASE IF EXISTS `casedb`;       /* These would not work other than for root or other able to create schemas */
 -- CREATE DATABASE IF NOT EXISTS `casedb`; /* These would not work other than for root or other able to create schemas */
+DROP TABLE IF EXISTS Category;
 
 DROP TABLE IF EXISTS log_event;
 DROP TABLE IF EXISTS log_list;
@@ -57,7 +58,19 @@ DROP FUNCTION IF EXISTS getMissingItemAmount;
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 
-USE casedb; /* UPDATED 2024-01-24 */
+USE casedb; /* UPDATED 2024-10-09 */
+
+
+/* --- IDEA CASE CREATE TABLES --- */
+CREATE TABLE IF NOT EXISTS Category (
+    id          INTEGER          NOT NULL AUTO_INCREMENT,
+    name        VARCHAR (255)    NOT NULL UNIQUE,
+    description VARCHAR(255),
+    budgetLimit DECIMAL(19,4),
+    isActive    BOOLEAN         NOT NULL DEFAULT FALSE,
+    
+    PRIMARY KEY (id)
+)   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 /* --- 01 CREATE TABLES --- */
 
@@ -903,9 +916,18 @@ DELIMITER ;
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 
-USE casedb; /* UPDATED 2024-02-26 */
+USE casedb; /* UPDATED 2024-10-09 */
 
 /* INSERTS */
+/* --- IDEA CASE --- */
+/* --- Insert: Category --- */
+INSERT INTO Category (name, description, budgetLimit, isActive) VALUES
+('First category', 'testing data for the first item in Category table', 1000, TRUE),
+('Second category', 'testing data for the second item in Category table',2000, FALSE),
+('Third category', 'testing data for the third item in Category table',3000, TRUE),
+('Fourth category','testing data for the fourth item in Category table',4000, FALSE),
+('Fifth category', 'testing data for the fifth item in Category table',5000, TRUE);
+
 /* --- Insert: GlobalSettings --- */
 INSERT INTO GlobalSetting(variable, description, numberValue, textValue) VALUES
     ('highPriority', 'High priority value', 800, NULL),

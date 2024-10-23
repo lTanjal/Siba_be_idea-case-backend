@@ -1,0 +1,109 @@
+
+### 1. Get all categories to have a general overview
+GET {{host}}/category
+Authorization: Basic{{token}}
+
+### Initial setup: Set the nextId after Testdata Reset
+### It should come after the last id in test data
+@nextId=9
+
+
+### 2. Get one by id (use a known id for this test to ensure retrieval by ID works)
+GET {{host}}/category/2
+Authorization: Basic {{token}}
+
+### 3. Create new category (Assume that the created category gets `nextId` or should be replaced with a returned ID to continue with the test)
+POST {{host}}/category
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{
+"name":"test name",
+"description":"test category adding",
+"budgetLimit":"6000",
+"isActive":"0"
+}
+
+### 4. Confirm the newly created category using the `nextId` (This will verify creation was successful and the correct ID was assigned)
+GET {{host}}/category/{{nextId}}
+Authorization: Basic {{token}}
+
+### 5. Create new category without description and budgetLimit
+POST {{host}}/category
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{"name":"test without description and budgetLimit",
+"isActive":"0"
+}
+
+### 6. Create new category with empty string description
+POST {{host}}/category
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{"name":"test with empty description",
+"description":"",
+"isActive":"0"
+
+}
+### 7. Create new category with empty string budgetLimit
+POST {{host}}/category
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{"name":"test with empty budgetLimit",
+    "budgetLimit":null,
+    "isActive":"0"
+}
+
+### 8. Get all to check if the new categories are added to db (at the end of the list)
+
+GET {{host}}/category
+Authorization: Basic {{token}}
+
+### 9. Create several buildings at a time (Testing the adding of multiple buildings operation)
+POST {{host}}/category/multi
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+[
+    {"name":"test multi 1",
+    "description":"test category multi adding",
+    "budgetLimit":"8000",
+    "isActive":"0"
+    },
+
+    {"name":"test multi 2",
+    "budgetLimit":"9000",
+    "isActive":"0"
+    }
+]
+### 10. Get all to confirm that new categories specified in multiple request are in db (at the end of the list)
+GET {{host}}/category
+Authorization: Basic {{token}}
+
+### 11. Update the category using `nextId` (Test the update operation)
+
+PUT {{host}}/category
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+ {"id":{{nextId}},
+    "name":"test update",
+    "description":"test update of nextId",
+    "budgetLimit":"9000",
+    "isActive":"0"
+
+ }
+### 12. Confirm the update (Ensure the update took effect)
+GET {{host}}/category
+Authorization: Basic {{token}}
+
+### 13. Delete the category (Test the delete operation)
+DELETE {{host}}/category/{{nextId}}
+Authorization: Basic {{token}}
+
+### 14. Confirm deletion (Trying to retrieve it should result in an 400 error)
+GET {{host}}/category/{{nextId}}
+Authorization: Basic {{token}}

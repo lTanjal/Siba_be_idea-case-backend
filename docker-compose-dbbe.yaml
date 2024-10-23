@@ -8,7 +8,7 @@ services:
     env_file:
       - .env
     ports:
-      - '${DB_PORT}:3306'
+      - "${DB_PORT}:3306"
     volumes:
       - ./Database/SQL_Scripts/000__CreateALLdb.sql:/docker-entrypoint-initdb.d/init.sql
       - mariadb_data:/var/lib/mysql
@@ -21,11 +21,11 @@ services:
     env_file: 
      - .env
     depends_on:
-      - siba_db_deployment
+      - siba_db_service
     environment:
-      - DB_HOST=siba_db_deployment
+      - DB_HOST=siba_db_service
     ports:
-      - '${BE_SERVER_PORT}:${BE_SERVER_PORT}'
+      - "${BE_SERVER_PORT}:${BE_SERVER_PORT}"
     volumes:
       - .:/app
       - /app/node_modules
@@ -37,4 +37,4 @@ networks:
     driver: bridge
 
 volumes:
-  mariadb_volume:
+  mariadb_data:

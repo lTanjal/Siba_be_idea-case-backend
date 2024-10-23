@@ -4,8 +4,7 @@ services:
   siba_db_service:
     image: mariadb:latest   # OR:   mariadb:11.1.2-jammy
     container_name: siba_db_container
-    env_file:
-      - .env
+    env_file: .env
     ports:
       - "${DB_PORT}:3306"
     volumes:
@@ -17,12 +16,11 @@ services:
   siba_be_service:
     container_name: siba_be_container
     build: .
-    env_file: 
-     - .env
+    env_file: .env
     depends_on:
-      -   siba_db_service:
+      - siba_db_service
     environment:
-      - DB_HOST=siba_db_service:
+      - DB_HOST=siba_db_service
     ports:
       - "${BE_SERVER_PORT}:${BE_SERVER_PORT}"
     volumes:
@@ -36,4 +34,4 @@ networks:
     driver: bridge
 
 volumes:
-  mariadb_volume:
+  mariadb_data:

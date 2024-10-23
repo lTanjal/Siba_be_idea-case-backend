@@ -1,6 +1,6 @@
 FROM node:20
 
-ENV BE_SERVER_PORT=8764
+ENV BE_SERVER_PORT=4678
 WORKDIR /app
 COPY package.json .
 

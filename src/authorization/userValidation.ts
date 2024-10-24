@@ -17,9 +17,9 @@ export const authenticator = (
   // logger.debug('Old version stopped working: ' + req.headers['Authorization']);
 
   // Taking the leading 'Bearer' and space ' ' out
-  const token = authHeader?.split(' ')[1];
+  const token = authHeader?.split(' ')[1]; // "Bearer e6rerq767q6e76qw7e6e6..."
 
-  if (token == null) {
+  if (!token) {
     logger.error(`Token: ${token}`);
     authenticationErrorHandler(req, res, 'Login TOKEN not found in headers');
     return;
@@ -39,7 +39,7 @@ export const authenticator = (
         return;
       }
 
-      req.user = verified as User; // CHECK !!!
+      req.user = verified as User; // Type assertion. Programmer knows User object will come out from decryption
       req.areRolesRequired = 0;
       req.requiredRolesList = [];
       next();

@@ -1,0 +1,56 @@
+### Remember to select the proper rest client environment
+
+### Reset database in admin env before performing other tests
+GET {{host}}/resetDatabase
+Authorization: Basic {{token}}
+
+### 1. Get all (this returns all cities currently in database)
+
+GET {{host}}/city
+Authorization: Basic {{token}}
+
+### Initial setup: Set the nextId after TestData reset.
+### It should come after the last id in test data
+@nextId = 6
+
+### 2. Get one by known id (use city id that is known to exist)
+GET {{host}}/city/1
+Authorization: Basic {{token}}
+
+### 3. Create one with empty averageTemp (returned id should match nextId)
+POST {{host}}/city
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{
+    "name": "TestCity name",
+    "established": "2024",
+}
+
+### 4. Get one by id using nextId (confirms that city was created)
+GET {{host}}/city/{{nextId}}
+Authorization: Basic {{token}}
+
+### 5. Update one (updates the created city)
+PUT {{host}}/city
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{
+    "id":{{nextId}},
+    "name":"Update TestCity name",
+    "established": "2025",
+    "averageTemp": 100
+}
+
+### 6. Get one by id using nextId (confirms the update)
+GET {{host}}/City/{{nextId}}
+Authorization: Basic {{token}}
+
+### 7. Delete one using nextId (deletes the city)
+DELETE {{host}}/City/{{nextId}}
+Authorization: Basic {{token}}
+
+### 8. Get one by id using nextId (confirms the deletion)
+GET {{host}}/City/{{nextId}}
+Authorization: Basic {{token}}

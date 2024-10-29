@@ -62,7 +62,7 @@ Content-Type: application/json
 GET {{host}}/category
 Authorization: Basic {{token}}
 
-### 9. Create several buildings at a time (Testing the adding of multiple buildings operation)
+### 9. Create several categories at a time (Testing the adding of multiple categories operation)
 POST {{host}}/category/multi
 Authorization: Basic {{token}}
 Content-Type: application/json

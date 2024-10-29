@@ -1,4 +1,4 @@
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 /* INSERTS */
 /* --- IDEA CASE --- */
@@ -9,6 +9,14 @@ INSERT INTO Category (name, description, budgetLimit, isActive) VALUES
 ('Third category', 'testing data for the third item in Category table',3000, TRUE),
 ('Fourth category','testing data for the fourth item in Category table',4000, FALSE),
 ('Fifth category', 'testing data for the fifth item in Category table',5000, TRUE);
+
+/* --- Insert: City --- */
+INSER INTO City (name, established, averageTemp )VALUES
+("Helsinki", "1550", 17),
+("Espoo", "1458", 7.3),
+("Oulu", "1605", 3.4),
+("Turku", "1229", 11.4),
+("Rovaniemi", "1453", 1.5);
 
 /* --- Insert: GlobalSettings --- */
 INSERT INTO GlobalSetting(variable, description, numberValue, textValue) VALUES

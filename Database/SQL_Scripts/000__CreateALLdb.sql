@@ -1,8 +1,9 @@
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 -- DROP DATABASE IF EXISTS `casedb`;       /* These would not work other than for root or other able to create schemas */
 -- CREATE DATABASE IF NOT EXISTS `casedb`; /* These would not work other than for root or other able to create schemas */
 DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS City;
 
 DROP TABLE IF EXISTS log_event;
 DROP TABLE IF EXISTS log_list;
@@ -58,7 +59,7 @@ DROP FUNCTION IF EXISTS getMissingItemAmount;
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 
 /* --- IDEA CASE CREATE TABLES --- */
@@ -71,6 +72,16 @@ CREATE TABLE IF NOT EXISTS Category (
     
     PRIMARY KEY (id)
 )   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS City(
+    id      INTEGER NOT NULL AUTO_INCREMENT,
+    name    VARCHAR (200) NOT NULL,
+    established DATE NOT NULL,
+    averageTemp DECIMAL (3,1),
+
+    PRIMARY KEY (id)
+  )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 
 /* --- 01 CREATE TABLES --- */
 
@@ -916,7 +927,7 @@ DELIMITER ;
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 /* INSERTS */
 /* --- IDEA CASE --- */
@@ -927,6 +938,15 @@ INSERT INTO Category (name, description, budgetLimit, isActive) VALUES
 ('Third category', 'testing data for the third item in Category table',3000, TRUE),
 ('Fourth category','testing data for the fourth item in Category table',4000, FALSE),
 ('Fifth category', 'testing data for the fifth item in Category table',5000, TRUE);
+
+/* --- Insert: City --- */
+INSER INTO City (name, established, averageTemp )VALUES
+("Helsinki", "1550", 17),
+("Espoo", "1458", 7.3),
+("Oulu", "1605", 3.4),
+("Turku", "1229", 11.4),
+("Rovaniemi", "1453", 1.5);
+
 
 /* --- Insert: GlobalSettings --- */
 INSERT INTO GlobalSetting(variable, description, numberValue, textValue) VALUES

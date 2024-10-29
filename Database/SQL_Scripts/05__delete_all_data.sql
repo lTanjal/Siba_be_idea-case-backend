@@ -1,7 +1,10 @@
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 DELETE FROM Category;
 ALTER TABLE Category AUTO_INCREMENT=1;
+
+DELETE FROM City;
+ALTER TABLE City AUTO_INCREMENT=1;
 
 DELETE FROM AllocCurrentRoundUser;
 DELETE FROM AllocSpace;

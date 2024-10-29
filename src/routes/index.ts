@@ -3,6 +3,7 @@ import allocround from './allocRound.js';
 import allocation from './allocation.js';
 import building from './building.js';
 import category from './category.js';
+import city from './city.js';
 import department from './department.js';
 import departmentplanner from './departmentplanner.js';
 import equipment from './equipment.js';
@@ -20,6 +21,7 @@ import user from './user.js';
 const routes = express.Router();
 
 routes.use('/category', category);
+routes.use('/city', city);
 
 routes.use('/allocation', allocation);
 routes.use('/allocRound', allocround);

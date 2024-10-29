@@ -24,11 +24,7 @@ function handleErrorBasedOnErrno(
       );
       break;
     case 1054:
-      requestErrorHandler(
-        req,
-        res,
-        "error in spelling [either in 'name' and/or in 'description'].",
-      );
+      requestErrorHandler(req, res, "error in spelling 'name'.");
       break;
     default:
       dbErrorHandler(req, res, error, defaultMessage);
@@ -66,7 +62,12 @@ category.get('/:id', (req: Request, res: Response) => {
     .where('id', req.params.id)
     .then((data) => {
       if (data.length === 1) {
-        successHandler(req, res, data, 'Successfully read the building rom DB');
+        successHandler(
+          req,
+          res,
+          data,
+          'Successfully read the category from DB',
+        );
       } else {
         requestErrorHandler(
           req,
@@ -89,7 +90,7 @@ category.post('/', (req: Request, res: Response) => {
       successHandler(req, res, idArray, 'Adding a category was successfull');
     })
     .catch((error) => {
-      handleErrorBasedOnErrno(req, res, error, 'error adding building');
+      handleErrorBasedOnErrno(req, res, error, 'error adding category');
     });
 });
 
@@ -132,7 +133,7 @@ category.put('/', (req: Request, res: Response) => {
           requestErrorHandler(
             req,
             res,
-            `Update category not successful, ${rowsAffected} row modified`,
+            `Update category was not successful, ${rowsAffected} row modified`,
           );
         }
       })
@@ -157,11 +158,11 @@ category.delete('/:id', (req: Request, res: Response) => {
           `Delete succesfull! Count of deleted rows: ${rowsAffected}`,
         );
       } else {
-        requestErrorHandler(req, res, `Invalid building id: ${req.params.id}`);
+        requestErrorHandler(req, res, `Invalid category id: ${req.params.id}`);
       }
     })
     .catch((error) => {
-      dbErrorHandler(req, res, error, 'Error deleting building');
+      dbErrorHandler(req, res, error, 'Error deleting category');
     });
 });
 export default category;

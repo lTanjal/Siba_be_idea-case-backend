@@ -1,4 +1,4 @@
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 
 /* --- IDEA CASE CREATE TABLES --- */
@@ -11,6 +11,16 @@ CREATE TABLE IF NOT EXISTS Category (
     
     PRIMARY KEY (id)
 )   ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS City(
+    id      INTEGER NOT NULL AUTO_INCREMENT,
+    name    VARCHAR (200) NOT NULL,
+    established DATE NOT NULL,
+    averageTemp DECIMAL (3,1),
+
+    PRIMARY KEY (id)
+  )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 
 /* --- 01 CREATE TABLES --- */
 

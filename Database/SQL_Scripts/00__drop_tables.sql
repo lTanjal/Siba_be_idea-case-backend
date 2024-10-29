@@ -1,8 +1,9 @@
-USE casedb; /* UPDATED 2024-10-09 */
+USE casedb; /* UPDATED 2024-10-29 */
 
 -- DROP DATABASE IF EXISTS `casedb`;       /* These would not work other than for root or other able to create schemas */
 -- CREATE DATABASE IF NOT EXISTS `casedb`; /* These would not work other than for root or other able to create schemas */
 DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS City;
 
 DROP TABLE IF EXISTS log_event;
 DROP TABLE IF EXISTS log_list;

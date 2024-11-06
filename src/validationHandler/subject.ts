@@ -16,6 +16,8 @@ import {
   validateNameObl,
 } from './index.js';
 import { validateProgramId } from './program.js';
+import { validateSpaceTypeId } from './spaceType.js';
+
 
 // This is a validator used by other routes which need subjectId as a foreign key
 export const validateSubjectId = [...createIdValidatorChain('subjectId')];
@@ -34,6 +36,7 @@ export const validateSubjectPost = [
   ...createFloatValidatorChain('area'),
   ...createBoolValidatorChain('isNoisy'),
   ...validateProgramId,
+  ...validateSpaceTypeId,
 ];
 
 // See how the PUT is usually just POST + id that exists for PUT already

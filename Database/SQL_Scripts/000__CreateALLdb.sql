@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS Subject (
     sessionCount    INTEGER         NOT NULL,
     area            DECIMAL(5,1)                DEFAULT NULL,
     programId       INTEGER         NOT NULL,
-    spaceTypeId     INTEGER,
+    spaceTypeId     INTEGER         NOT NULL,
     allocRoundId    INTEGER         NOT NULL,
     isNoisy         BOOLEAN         NOT NULL Default 0,
 

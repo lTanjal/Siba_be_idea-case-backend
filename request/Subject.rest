@@ -40,6 +40,24 @@ Content-Type: application/json
     "allocRoundId": 10002
 }
 
+### 4.1. Create new subject without spaceTypeId (should fail)
+### Expected result: 400 Bad Request with an error message indicating spaceTypeId is required.
+POST {{host}}/subject
+Authorization: Basic {{token}}
+Content-Type: application/json
+
+{
+    "name": "Test name without spaceTypeId",
+    "groupSize": 25,
+    "groupCount": 2,
+    "sessionLength": "02:00",
+    "sessionCount": 4,
+    "area": 30,
+    "programId": 3020,
+    "programName": "Test Program",
+    "allocRoundId": 10003
+}
+
 ### 5. Get subject by testID to confirm newly created subject exists
 GET {{host}}/subject/{{nextId}}
 Authorization: Basic {{token}}

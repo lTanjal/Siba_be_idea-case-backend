@@ -204,7 +204,16 @@ user.post('/login', (req, res) => {
                 process.env.SECRET_TOKEN as string,
                 { expiresIn: '24h' },
               );
-              const updatedData = data.map((obj) => ({ ...obj, token }));
+
+              const userDataFromDB = {
+                id: data[0].id,
+                email: data[0].email,
+                isAdmin: data[0].isAdmin,
+                isPlanner: data[0].isPlanner,
+                isStatist: data[0].isStatist,
+                // note, no password hash here
+              };
+              const updatedData = [{ ...userDataFromDB, token }];
               successHandler(req, res, updatedData, '/login: Ok');
             }
           })

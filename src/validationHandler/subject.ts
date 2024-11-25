@@ -18,7 +18,6 @@ import {
 import { validateProgramId } from './program.js';
 import { validateSpaceTypeId } from './spaceType.js';
 
-
 // This is a validator used by other routes which need subjectId as a foreign key
 export const validateSubjectId = [...createIdValidatorChain('subjectId')];
 

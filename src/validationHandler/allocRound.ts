@@ -30,7 +30,7 @@ export const validateCopiedAllocRoundId = [
 export const validateAllocRoundPost = [
   ...validateNameObl,
   validateIsReadOnly,
-  //...validateUserId,
+  ...validateUserId,
   ...validateDescriptionObl,
 ];
 
